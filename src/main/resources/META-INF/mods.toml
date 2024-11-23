@@ -1,0 +1,25 @@
+modLoader="javafml" #mandatory
+loaderVersion="[49,)" #mandatory
+license="MIT"
+
+[[mods]] #mandatory
+modId="serverjoemod" #mandatory
+version="1.0.0" #mandatory
+displayName="Server Side JOE Mod" #mandatory
+authors="JOEYOUNGJAE" #optional
+side="SERVER"
+description='2024 joe 연말 마크서버에서 서버사이드 용으로 적용할 모드입니다.'
+
+[[dependencies.serverjoemod]]
+modId="forge"
+mandatory=true
+versionRange="[49.1.0,50)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.serverjoemod]]
+modId="minecraft"
+mandatory=true
+versionRange="[1.20.4]"
+ordering="NONE"
+side="BOTH"
