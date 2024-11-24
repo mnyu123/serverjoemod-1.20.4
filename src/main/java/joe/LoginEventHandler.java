@@ -14,18 +14,23 @@ public class LoginEventHandler {
 
     @SubscribeEvent
     public void onPlayerLogin(PlayerEvent.PlayerLoggedInEvent event) {
-        // 서버에 들어온 유저 정보 가져오고
+        // 서버에 들어온 유저 정보 가져오기
         ServerPlayer player = (ServerPlayer) event.getEntity();
-        // 바로 시스템 메시지로 매크로 메시지 전달
+        // 시스템 메시지로 환영 메시지 전달
         player.sendSystemMessage(Component.literal("[joeminecraft] : 2024 연말 서버에 와주셔서 감사합니다!"));
+        player.sendSystemMessage(Component.literal("[joeminecraft] : 크리에이티브 모드로 변경 혹은 OP권한 요구는 서버관리자에게 카톡으로 주세요!"));
+        player.sendSystemMessage(Component.literal("[joeminecraft] : A. 무지성 pvp 금지. 서버 로그확인후 한 유저를 의도하게 많이죽일(2킬이상) 경우 밴"));
+        player.sendSystemMessage(Component.literal("[joeminecraft] : B. TNT 금지를 하지는 않으나 테러가 발생할경우 즉시 차단 및 유저 밴"));
+        player.sendSystemMessage(Component.literal("[joeminecraft] : C. 건축은 자유지만 활동반경은 서버가 소규모인것을 고려해 3만블럭 좌표 이하에서 (넘을시 철거 및 강제 텔레포트)"));
+        player.sendSystemMessage(Component.literal("[joeminecraft] : etc. 해당 채팅 지우는것은 F3 + D"));
 
         int attendanceDays = attendanceManager.getAttendanceDays(player); // 유저 출석일
-        int totalServerDays = attendanceManager.getTotalServerDays(); // 총 서버가동일
-        double attendanceRate = (attendanceDays / (double) totalServerDays) * 100; // 유저출석일/서버가동일 %로 보여주는 수식
+        int totalServerDays = attendanceManager.getTotalServerDays(); // 총 서버 가동일
+        double attendanceRate = (attendanceDays / (double) totalServerDays) * 100; // 출석률 계산
 
-        // 계산해서 얼마나 출석했는지 체크
-        String attendanceMessage = String.format("현재 당신의 출석일 수 : %d%d (%.2f%% 출석함.)", attendanceDays, totalServerDays, attendanceRate);
-        // 방금 String 내용을 시스템 메시지로 다시 뿌리기
+        // 출석 메시지 생성
+        String attendanceMessage = String.format("현재 당신의 출석일 수 : %d/%d (%.2f%% 출석함.)", attendanceDays, totalServerDays, attendanceRate);
+        // 시스템 메시지로 출석 메시지 전달
         player.sendSystemMessage(Component.literal(attendanceMessage));
     }
 }

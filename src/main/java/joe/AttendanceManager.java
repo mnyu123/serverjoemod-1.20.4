@@ -71,6 +71,6 @@ public class AttendanceManager {
     public int getTotalServerDays() {
         // 서버 시작일(11/22일 처음 시작)
         LocalDate serverStartDate = LocalDate.of(2024, 11, 22);
-        return (int) ChronoUnit.DAYS.between(serverStartDate, LocalDate.now()) + 1;
+        return (int) ChronoUnit.DAYS.between(serverStartDate, LocalDate.now().plusDays(1));
     }
 }
